@@ -1,100 +1,213 @@
-import { useState } from 'react';
-import avinas from '../../assets/images/avinash.jpg';
-import indiagate from '../../assets/images/indiagate.JPG';
-import './AboutMe.scss';
-import Skills from '../Skills/Skills.jsx';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import avinas from "../../assets/images/avinash.png";
+import indiagate from "../../assets/images/indiagate.JPG";
+import { aboutContent } from "../../data/portfolioData";
+import useHoverTranslate from "../../hooks/useHoverTranslate";
+import Skills from "../Skills/Skills.jsx";
+import "./AboutMe.scss";
 
 const AboutMe = () => {
+  const { transform, handleMouseMove, handleMouseLeave } = useHoverTranslate(5);
+  const [activeTab, setActiveTab] = useState("focus");
+  const tabIds = aboutContent.tabs.map((tab) => tab.id);
 
-    const [transform, setTransform] = useState('translate(0px, 0px)');
+  const handleTabKeyDown = (event, currentTab) => {
+    const currentIndex = tabIds.indexOf(currentTab);
 
-    const handleMouseMove = (event) => {
-        const element = event.currentTarget;
-        const rect = element.getBoundingClientRect();
-        const mouseX = event.clientX - rect.left; // Mouse X position relative to the element
-        const mouseY = event.clientY - rect.top; // Mouse Y position relative to the element
+    if (currentIndex === -1) {
+      return;
+    }
 
-        let moveX = 0;
-        let moveY = 0;
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      const nextIndex = (currentIndex + 1) % tabIds.length;
+      setActiveTab(tabIds[nextIndex]);
+      return;
+    }
 
-        if (mouseX > rect.width / 2) {
-            moveX = 5; // Move right
-        } else {
-            moveX = -5; // Move left
-        }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      const prevIndex = (currentIndex - 1 + tabIds.length) % tabIds.length;
+      setActiveTab(tabIds[prevIndex]);
+      return;
+    }
 
-        if (mouseY > rect.height / 2) {
-            moveY = 5; // Move down
-        } else {
-            moveY = -5; // Move up
-        }
+    if (event.key === "Home") {
+      event.preventDefault();
+      setActiveTab(tabIds[0]);
+      return;
+    }
 
-        setTransform(`translate(${moveX}px, ${moveY}px)`);
-    };
+    if (event.key === "End") {
+      event.preventDefault();
+      setActiveTab(tabIds[tabIds.length - 1]);
+    }
+  };
 
-    const handleMouseLeave = () => {
-        setTransform('translate(0px, 0px)');
-    };
-
-
-    return (
-        <div className="aboutMeContainer">
-            <div className="aboutMeSubContainer">
-                <div className="profileSection">
-                    <div className="midImg" style={{ transform }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-                        <img src={avinas} alt='Avinash Dubey'></img>
-                    </div>
-                    <div className="rightImg" style={{ transform }} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-                        <img src={indiagate} alt='Avinash Dubey'></img>
-                    </div>
-                </div>
-                <div className="detailSection">
-                    <h1>namaskar! i'm avinash dubey</h1>
-                    <p>
-                        i'm a developer who finds joy in creating and building things from scratch.
-                        i'm proficient in the MERN stack, C, and C++, and i'm currently diving deep
-                        into Python to explore the realms of data science, machine learning, and AI.
-                        my journey in programming has always been fueled by a passion for solving
-                        problems and bringing ideas to life. currently, i'm pursuing my master's in 
-                        computer applications from  <a href='https://www.galgotiasuniversity.edu.in/' id='lnk'>galgotias university, greater noida</a>.
-                        
-
-                        <br></br>
-                        <br></br>
-
-                        programming, to me, is like poetry. each line of code is like a line of verse—meticulously
-                        crafted, thoughtful, and expressive. just as a poet uses words to convey emotions and stories,
-                        i use code to create digital experiences. the beauty lies in the simplicity and elegance of
-                        a well-written function, much like a well-composed poem.
-
-                        <br></br>
-                        <br></br>
-
-                        i always try to bring a unique blend of technical skills and a creative mindset.
-                        i don't just write code; i create solutions that are intuitive and impactful. my approach
-                        to development is holistic—i see the bigger picture and understand how each piece fits together.
-
-                        <br></br>
-                        <br></br>
-
-                        in programming, i see patterns and rhythms akin to those in poetry. this perspective allows me
-                        to approach coding with a unique sensibility, balancing logic with creativity. whether it's
-                        optimizing an algorithm or designing a user interface, i strive to create work that resonates
-                        on a deeper level.
-
-                        <br></br>
-                        <br></br>
-
-                        to sum it up, i'm a coder who finds poetry in algorithms, a developer who sees beauty in code, 
-                        and a lifelong learner driven by curiosity and a desire to create meaningful change.
-
-                    </p>
-                </div>
-
-                <Skills />
-            </div>
+  return (
+    <div className="aboutMeContainer">
+      <div className="aboutMeSubContainer">
+        <div className="profileSection">
+          <div
+            className="midImg"
+            style={{ transform }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img src={avinas} alt="Avinash Dubey"></img>
+          </div>
+          <div
+            className="rightImg"
+            style={{ transform }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img src={indiagate} alt="Avinash Dubey"></img>
+          </div>
         </div>
-    );
+        <div className="detailSection">
+          <h1>{aboutContent.heading}</h1>
+          <p>
+            {aboutContent.paragraphs[0]}
+            <br></br>
+            <br></br>
+            {aboutContent.paragraphs[1]}{" "}
+            <a
+              href={aboutContent.educationLink}
+              id="lnk"
+              target="_blank"
+              rel="noreferrer"
+            >
+              galgotias university, greater noida
+            </a>
+            .<br></br>
+            <br></br>
+            {aboutContent.paragraphs[2]}
+          </p>
+
+          <div className="aboutStats">
+            {aboutContent.stats.map((stat) => (
+              <article className="aboutStatCard" key={stat.id}>
+                <span>{stat.value}</span>
+                <p>{stat.label}</p>
+              </article>
+            ))}
+          </div>
+
+          <div
+            className="aboutTabs"
+            role="tablist"
+            aria-label="about content tabs"
+          >
+            {aboutContent.tabs.map((tab) => (
+              <button
+                className={`tabBtn ${activeTab === tab.id ? "active" : ""}`}
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                onKeyDown={(event) => handleTabKeyDown(event, tab.id)}
+                type="button"
+                role="tab"
+                id={`about-tab-${tab.id}`}
+                aria-selected={activeTab === tab.id}
+                aria-controls={`about-panel-${tab.id}`}
+                tabIndex={activeTab === tab.id ? 0 : -1}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {activeTab === "focus" && (
+            <div
+              className="tabPanel focusArea"
+              role="tabpanel"
+              id="about-panel-focus"
+              aria-labelledby="about-tab-focus"
+              key="focus"
+            >
+              <h2>current focus</h2>
+              <div className="focusCards">
+                {aboutContent.focusAreas.map((area) => (
+                  <article className="focusCard" key={area}>
+                    <p>{area}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === "timeline" && (
+            <div
+              className="tabPanel timelineSection"
+              role="tabpanel"
+              id="about-panel-timeline"
+              aria-labelledby="about-tab-timeline"
+              key="timeline"
+            >
+              <h2>journey timeline</h2>
+              <div className="timelineList">
+                {aboutContent.timeline.map((item) => (
+                  <article className="timelineCard" key={item.id}>
+                    <div className="yearTag">{item.year}</div>
+                    <h3>{item.title}</h3>
+                    <p>{item.detail}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === "wins" && (
+            <div
+              className="tabPanel achievementSection"
+              role="tabpanel"
+              id="about-panel-wins"
+              aria-labelledby="about-tab-wins"
+              key="wins"
+            >
+              <h2>selected wins</h2>
+              <div className="achievementGrid">
+                {aboutContent.achievements.map((item) => (
+                  <article className="achievementCard" key={item.id}>
+                    <div className="metric">{item.metric}</div>
+                    <h3>{item.label}</h3>
+                    <p>{item.detail}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="aboutCta">
+            <h2>{aboutContent.cta.title}</h2>
+            <p>{aboutContent.cta.subtitle}</p>
+            <div className="availabilityBadge">
+              {aboutContent.cta.availability}
+            </div>
+            <div className="ctaActions">
+              <Link className="ctaBtn primary" to="/">
+                view projects
+              </Link>
+              <a className="ctaBtn" href={aboutContent.cta.mail}>
+                contact me
+              </a>
+              <a
+                className="ctaBtn"
+                href={aboutContent.cta.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                view resume
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <Skills />
+      </div>
+    </div>
+  );
 };
 
 export default AboutMe;

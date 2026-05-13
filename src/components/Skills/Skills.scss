@@ -8,9 +8,10 @@
     h1 {
         font-size: 2rem;
         font-weight: bold;
-        background: linear-gradient(to left, #f12711, #f5af19);
-        background-clip: text;
+      display: inline-block;
+      background: linear-gradient(to left, #f12711, #f5af19);
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
@@ -35,4 +36,26 @@
             }
         }
     }
+}
+
+/* Dark mode */
+body.dark .skillsContainer h1 {
+  display: inline-block;
+  background: linear-gradient(to left, #f12711, #f5af19);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.dark .skillsContainer .skillCards .skillCard p {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d0e1fb;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark .skillsContainer .skillCards .skillCard p:hover {
+  background: rgb(255, 130, 20);
+  color: #0b0f15;
+  transform: translateY(-2px);
 }

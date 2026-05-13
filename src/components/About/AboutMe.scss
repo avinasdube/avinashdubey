@@ -14,6 +14,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    box-sizing: border-box;
 
     .profileSection {
       display: flex;
@@ -61,13 +62,16 @@
     .detailSection {
       display: flex;
       flex-direction: column;
+      align-self: stretch;
+      min-width: 0;
+      width: 100%;
 
       h1 {
         font-size: 2rem;
         font-weight: bold;
         background: linear-gradient(to left, #f12711, #f5af19);
-        background-clip: text;
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
@@ -82,13 +86,390 @@
           color: black;
           font-weight: 500;
           transition: all 0.4s ease; /* Simplify the transition property */
-        
+
           &:hover {
             border-radius: 6px;
             background: linear-gradient(to right, rgb(180, 180, 180), rgba(245, 245, 245));
           }
         }
-        
+
+      }
+
+      .aboutStats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-top: 0.7rem;
+
+        .aboutStatCard {
+          background: whitesmoke;
+          border-radius: 20px;
+          padding: 0.8rem;
+          text-align: center;
+
+          span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #222;
+          }
+
+          p {
+            margin: 0.35rem 0 0;
+            font-size: 0.82rem;
+            color: #666;
+          }
+        }
+      }
+
+      .focusArea {
+        margin-top: 1rem;
+
+        h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+          background: linear-gradient(to left, #f12711, #f5af19);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .focusCards {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.7rem;
+
+          .focusCard {
+            background: rgb(243, 243, 243);
+            border-radius: 18px;
+            padding: 0.7rem 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+              transform: translateY(-4px);
+              box-shadow: 0 0 22px rgba(210, 210, 210, 0.7);
+            }
+
+            p {
+              margin: 0;
+              font-size: 0.95rem;
+              color: #444;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      .aboutTabs {
+        margin-top: 1.2rem;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        .tabBtn {
+          border: none;
+          border-radius: 20px;
+          background: #ededed;
+          color: #333;
+          padding: 0.45rem 0.8rem;
+          font-size: 0.82rem;
+          font-family: $primaryfont;
+          cursor: pointer;
+          text-transform: lowercase;
+          transition: background-color 0.25s ease;
+
+          &:hover {
+            background: #e3e3e3;
+          }
+
+          &:focus-visible {
+            outline: 2px solid #ff7f11;
+            outline-offset: 1px;
+          }
+
+          &.active {
+            background: #262626;
+            color: white;
+          }
+        }
+      }
+
+      .tabPanel {
+        animation: fadeSlideIn 0.28s ease;
+      }
+
+      .timelineSection {
+        margin-top: 1.3rem;
+
+        h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+          background: linear-gradient(to left, #f12711, #f5af19);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .timelineList {
+          display: grid;
+          gap: 0.8rem;
+
+          .timelineCard {
+            position: relative;
+            background: whitesmoke;
+            border-radius: 20px;
+            padding: 0.8rem 1rem;
+            border-left: 4px solid #f5af19;
+            transition: background 0.25s ease, border-color 0.25s ease,
+              box-shadow 0.25s ease, transform 0.25s ease;
+
+            .yearTag {
+              font-size: 0.75rem;
+              width: fit-content;
+              font-weight: 700;
+              border-radius: 14px;
+              padding: 4px 10px;
+              background: #ececec;
+            }
+
+            h3 {
+              margin: 0.45rem 0 0.2rem;
+              font-size: 1rem;
+            }
+
+            p {
+              margin: 0;
+              font-size: 0.92rem;
+              color: #555;
+            }
+          }
+        }
+      }
+
+      body.dark & {
+        .timelineSection {
+          .timelineList {
+            .timelineCard {
+              background: rgba(255, 255, 255, 0.04);
+              border-left-color: #ff8a00;
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+              .yearTag {
+                background: rgba(255, 255, 255, 0.08);
+                color: #dfe9f6;
+              }
+
+              h3 {
+                color: #dfe9f6;
+              }
+
+              p {
+                color: #b5c4d8;
+              }
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.07);
+                box-shadow: 0 0 20px rgba(255, 130, 20, 0.15);
+                transform: translateY(-2px);
+              }
+            }
+          }
+        }
+      }
+
+      .achievementSection {
+        margin-top: 1.3rem;
+
+        h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+          background: linear-gradient(to left, #f12711, #f5af19);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .achievementGrid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0.8rem;
+
+          .achievementCard {
+            background: whitesmoke;
+            border-radius: 20px;
+            padding: 0.8rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+              transform: translateY(-4px);
+              box-shadow: 0 0 20px rgba(210, 210, 210, 0.8);
+            }
+
+            .metric {
+              width: fit-content;
+              border-radius: 14px;
+              background: #e8e8e8;
+              padding: 4px 10px;
+              font-size: 0.72rem;
+              font-weight: 700;
+            }
+
+            h3 {
+              margin: 0.5rem 0 0.25rem;
+              font-size: 0.98rem;
+            }
+
+            p {
+              margin: 0;
+              font-size: 0.9rem;
+              color: #5a5a5a;
+            }
+          }
+        }
+      }
+
+      .aboutCta {
+        margin-top: 1.4rem;
+        border-radius: 24px;
+        padding: 1rem;
+        background: linear-gradient(to right, #f7f7f7, #efefef);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+
+        h2 {
+          margin: 0;
+          font-size: 1.25rem;
+        }
+
+        p {
+          margin: 0.45rem 0 0.8rem;
+          font-size: 0.95rem;
+          color: #5a5a5a;
+        }
+
+        .availabilityBadge {
+          width: fit-content;
+          margin-bottom: 0.8rem;
+          font-size: 0.75rem;
+          border-radius: 14px;
+          padding: 5px 10px;
+          background: #e8e8e8;
+          color: #444;
+        }
+
+        .ctaActions {
+          display: flex;
+          gap: 0.6rem;
+          flex-wrap: wrap;
+
+          .ctaBtn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            text-decoration: none;
+            color: #1f1f1f;
+            padding: 0.55rem 0.9rem;
+            border-radius: 24px;
+            background: #e9e9e9;
+            font-size: 0.86rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background: #dedede;
+            }
+          }
+
+          .primary {
+            background: #262626;
+            color: white;
+
+            &:hover {
+              background: #ff7f11;
+            }
+          }
+        }
+      }
+
+      body.dark & {
+        .aboutCta {
+          background: linear-gradient(
+            to right,
+            rgba(20, 24, 32, 0.72),
+            rgba(16, 20, 28, 0.72)
+          );
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+
+          h2 {
+            color: #dfe9f6;
+            -webkit-text-fill-color: initial;
+            background: none;
+          }
+
+          p {
+            color: #b5c4d8;
+          }
+
+          .availabilityBadge {
+            background: rgba(255, 130, 20, 0.1);
+            color: #ffd89b;
+            border: 1px solid rgba(255, 130, 20, 0.2);
+          }
+
+          .ctaActions {
+            .ctaBtn {
+              background: rgba(255, 255, 255, 0.08);
+              color: #e6eef8;
+              border: 1px solid rgba(255, 255, 255, 0.06);
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.13);
+              }
+            }
+
+            .primary {
+              background: #ff8214;
+              color: #0b0f15;
+
+              &:hover {
+                background: #ff9a32;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutMeContainer {
+    .aboutMeSubContainer {
+      .detailSection {
+        .tabPanel {
+          animation: none;
+        }
       }
     }
   }
@@ -100,6 +481,7 @@
   .aboutMeContainer {
     .aboutMeSubContainer {
       width: 60%;
+      align-items: stretch;
 
       .profileSection {
 
@@ -114,40 +496,400 @@
           height: 260px;
         }
       }
+
+      .detailSection {
+        .aboutStats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .achievementSection {
+          .achievementGrid {
+            grid-template-columns: 1fr;
+          }
+        }
+      }
     }
   }
 }
 
 @media screen and (max-width: 768px) {
   .aboutMeContainer {
+    margin-top: 60px;
     .aboutMeSubContainer {
-      width: 80%;
+      width: 90%;
+      padding: 1.2rem;
+      align-items: stretch;
 
       .profileSection {
-        height: 300px;
+        height: 280px;
+        margin-top: 20px;
 
         .midImg,
         .rightImg {
-          width: 180px;
-          height: 240px;
-          margin-left: -140px;
+          width: 150px;
+          height: 220px;
+          margin-left: -100px;
         }
 
         .rightImg {
-          width: 240px;
-          height: 200px;
-          margin-left: 50px;
-          margin-top: -200px;
+          width: 220px;
+          height: 180px;
+          margin-left: 30px;
+          margin-top: -180px;
+        }
+      }
+
+      .detailSection {
+        h1 {
+          font-size: 1.5rem;
+          margin-bottom: 0.8rem;
         }
 
-        .detailSection {
-          background-color: saddlebrown;
-          h1 {
-            font-size: 1.5rem;
+        p {
+          font-size: 0.95rem;
+          line-height: 1.5;
+        }
+
+        .aboutStats {
+          grid-template-columns: 1fr;
+          gap: 0.6rem;
+          margin-top: 0.8rem;
+
+          .aboutStatCard {
+            padding: 0.7rem;
+            border-radius: 16px;
+
+            span {
+              font-size: 0.9rem;
+            }
+
+            p {
+              font-size: 0.75rem;
+              margin-top: 0.3rem;
+            }
           }
-  
+        }
+
+        .focusArea {
+          margin-top: 1.2rem;
+
+          h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+          }
+
+          .focusCards {
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+
+            .focusCard {
+              padding: 0.8rem;
+              border-radius: 14px;
+
+              p {
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+
+        .timelineSection {
+          margin-top: 1.2rem;
+
+          h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+          }
+
+          .timelineList {
+            gap: 0.6rem;
+
+            .timelineCard {
+              padding: 0.7rem 0.9rem;
+              border-radius: 14px;
+
+              .yearTag {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+              }
+
+              h3 {
+                font-size: 0.9rem;
+                margin: 0.3rem 0 0.15rem;
+              }
+
+              p {
+                font-size: 0.85rem;
+              }
+            }
+          }
+        }
+
+        .achievementSection {
+          margin-top: 1.2rem;
+
+          h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+          }
+
+          .achievementGrid {
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+
+            .achievementCard {
+              padding: 0.7rem;
+              border-radius: 14px;
+
+              .metric {
+                font-size: 0.65rem;
+                padding: 3px 8px;
+              }
+
+              h3 {
+                font-size: 0.9rem;
+                margin: 0.3rem 0 0.15rem;
+              }
+
+              p {
+                font-size: 0.85rem;
+              }
+            }
+          }
+        }
+
+        .aboutCta {
+          margin-top: 1rem;
+          padding: 0.9rem;
+          border-radius: 16px;
+
+          h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            font-size: 0.85rem;
+            margin: 0.3rem 0 0.6rem;
+          }
+
+          .availabilityBadge {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            margin-bottom: 0.6rem;
+          }
+
+          .ctaActions {
+            gap: 0.5rem;
+            flex-direction: column;
+
+            .ctaBtn {
+              padding: 0.5rem 0.8rem;
+              font-size: 0.8rem;
+              width: 100%;
+            }
+          }
+        }
+
+        .aboutTabs {
+          margin-top: 1rem;
+          gap: 0.4rem;
+
+          .tabBtn {
+            padding: 0.4rem 0.7rem;
+            font-size: 0.75rem;
+            border-radius: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .aboutMeContainer {
+    margin-top: 40px;
+    .aboutMeSubContainer {
+      width: 95%;
+      padding: 1rem;
+
+      .profileSection {
+        height: 240px;
+        margin-top: 15px;
+
+        .midImg,
+        .rightImg {
+          width: 120px;
+          height: 180px;
+          margin-left: -80px;
+        }
+
+        .rightImg {
+          width: 180px;
+          height: 140px;
+          margin-left: 20px;
+          margin-top: -140px;
+        }
+      }
+
+      .detailSection {
+        h1 {
+          font-size: 1.25rem;
+          margin-bottom: 0.6rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+
+        .aboutStats {
+          gap: 0.5rem;
+          margin-top: 0.7rem;
+
+          .aboutStatCard {
+            padding: 0.6rem;
+            border-radius: 12px;
+
+            span {
+              font-size: 0.8rem;
+            }
+
+            p {
+              font-size: 0.7rem;
+              margin-top: 0.25rem;
+            }
+          }
+        }
+
+        .focusArea {
+          margin-top: 1rem;
+
+          h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+          }
+
+          .focusCards {
+            gap: 0.5rem;
+
+            .focusCard {
+              padding: 0.7rem;
+              border-radius: 12px;
+
+              p {
+                font-size: 0.85rem;
+              }
+            }
+          }
+        }
+
+        .timelineSection {
+          margin-top: 1rem;
+
+          h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+          }
+
+          .timelineList {
+            gap: 0.5rem;
+
+            .timelineCard {
+              padding: 0.6rem 0.8rem;
+              border-radius: 12px;
+              border-left-width: 3px;
+
+              .yearTag {
+                font-size: 0.65rem;
+                padding: 2px 6px;
+              }
+
+              h3 {
+                font-size: 0.85rem;
+                margin: 0.25rem 0 0.1rem;
+              }
+
+              p {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+
+        .achievementSection {
+          margin-top: 1rem;
+
+          h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+          }
+
+          .achievementGrid {
+            gap: 0.5rem;
+
+            .achievementCard {
+              padding: 0.6rem;
+              border-radius: 12px;
+
+              .metric {
+                font-size: 0.6rem;
+                padding: 2px 6px;
+              }
+
+              h3 {
+                font-size: 0.85rem;
+                margin: 0.25rem 0 0.1rem;
+              }
+
+              p {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+
+        .aboutCta {
+          margin-top: 0.8rem;
+          padding: 0.8rem;
+          border-radius: 14px;
+
+          h2 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+          }
+
           p {
             font-size: 0.8rem;
+            margin: 0.25rem 0 0.5rem;
+          }
+
+          .availabilityBadge {
+            font-size: 0.65rem;
+            padding: 3px 6px;
+            margin-bottom: 0.5rem;
+          }
+
+          .ctaActions {
+            gap: 0.4rem;
+
+            .ctaBtn {
+              padding: 0.45rem 0.7rem;
+              font-size: 0.75rem;
+              width: 100%;
+              border-radius: 12px;
+            }
+          }
+        }
+
+        .aboutTabs {
+          margin-top: 0.8rem;
+          gap: 0.3rem;
+
+          .tabBtn {
+            padding: 0.35rem 0.6rem;
+            font-size: 0.7rem;
+            border-radius: 14px;
           }
         }
       }

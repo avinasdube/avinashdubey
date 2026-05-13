@@ -18,8 +18,8 @@
         font-weight: bold;
         text-align: center;
         background: linear-gradient(to left, #000000, #808080);
-        background-clip: text;
         -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
         transition: transform 0.4s ease;
     }
@@ -53,8 +53,8 @@
             font-size: 1rem;
             font-weight: bold;
             background: linear-gradient(to right, #444444, #808080);
-            background-clip: text;
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
     }
@@ -66,20 +66,51 @@
         color: #444444;
         font-weight: 350;
     }
+
+    .welcomeStats {
+        width: 60%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.7rem;
+        margin-top: 1rem;
+
+        .statChip {
+            background: whitesmoke;
+            border-radius: 20px;
+            text-align: center;
+            padding: 0.8rem 0.5rem;
+
+            span {
+                font-size: 1rem;
+                font-weight: 700;
+            }
+
+            p {
+                margin: 0.35rem 0 0;
+                font-size: 0.8rem;
+                color: #626262;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 768px) {
     // WELCOME SECTION STYLING
 
     .welcomeSection {
-        padding: 30px 0;
+        margin-top: 60px;
+        padding: 20px 15px;
+        min-height: 150px;
 
         .greet {
-            width: 50%;
-            font-size: 2.5rem;
+            width: 70%;
+            font-size: 1.8rem;
+            line-height: 1.2;
         }
 
         .basedIn {
+            padding: 1rem 0.4rem;
+            gap: 8px;
 
             img {
                 width: 16px;
@@ -92,22 +123,114 @@
         }
 
         .intro {
-            width: 70%;
-            font-size: 1rem;
+            width: 85%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .welcomeStats {
+            width: 90%;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+
+            .statChip {
+                border-radius: 16px;
+                text-align: center;
+                padding: 0.7rem 0.5rem;
+
+                span {
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                }
+
+                p {
+                    margin: 0.25rem 0 0;
+                    font-size: 0.75rem;
+                }
+            }
         }
     }
-
 }
 
 @media screen and (max-width: 480px) {
-    // WELCOME SECTION STYLING
+    // WELCOME SECTION STYLING FOR PHONES
 
     .welcomeSection {
+        margin-top: 30px;
+        padding: 15px 10px;
+        min-height: 120px;
 
         .greet {
-            width: 70%;
-            font-size: 2rem;
+            width: 90%;
+            font-size: 1.5rem;
+            line-height: 1.15;
+        }
+
+        .basedIn {
+            padding: 0.8rem 0.3rem;
+            gap: 6px;
+
+            img {
+                width: 14px;
+                height: 14px;
+            }
+
+            .place {
+                font-size: 0.75rem;
+            }
+        }
+
+        .intro {
+            width: 90%;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .welcomeStats {
+            width: 95%;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+
+            .statChip {
+                border-radius: 14px;
+                padding: 0.6rem 0.4rem;
+
+                span {
+                    font-size: 0.85rem;
+                }
+
+                p {
+                    font-size: 0.7rem;
+                    margin: 0.2rem 0 0;
+                }
+            }
         }
     }
-    
+}
+
+@media screen and (max-width: 320px) {
+    // WELCOME SECTION STYLING FOR SMALL PHONES
+
+    .welcomeSection {
+        margin-top: 25px;
+        padding: 12px 8px;
+
+        .greet {
+            width: 95%;
+            font-size: 1.3rem;
+        }
+
+        .basedIn {
+            padding: 0.7rem 0.25rem;
+
+            .place {
+                font-size: 0.7rem;
+            }
+        }
+
+        .intro {
+            font-size: 0.8rem;
+        }
+    }
 }
