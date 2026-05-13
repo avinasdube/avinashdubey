@@ -1,0 +1,31 @@
+{
+  "short_name": "Avinash",
+  "name": "Avinash Dubey - Portfolio",
+  "description": "Full-stack developer portfolio showcasing AI-ready web products, MERN stack expertise, and practical engineering projects",
+  "icons": [
+    {
+      "src": "av49.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "av49.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "avinasicon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ff7f11",
+  "orientation": "portrait-primary"
+}

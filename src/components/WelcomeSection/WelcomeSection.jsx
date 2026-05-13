@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
-import './WelcomeSection.scss';
-import locat from '../../assets/icons/locat.png';
+import locat from "../../assets/icons/locat.png";
+import { welcomeContent } from "../../data/portfolioData";
+import useHoverTranslate from "../../hooks/useHoverTranslate";
+import "./WelcomeSection.scss";
 
 const WelcomeSection = () => {
-  const [transform, setTransform] = useState('translate(0px, 0px)');
-
-  const handleMouseMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
-
-    const moveX = mouseX > rect.width / 2 ? 5 : -5;
-    const moveY = mouseY > rect.height / 2 ? 5 : -5;
-
-    setTransform(`translate(${moveX}px, ${moveY}px)`);
-  };
-
-  const handleMouseLeave = () => {
-    setTransform('translate(0px, 0px)');
-  };
+  const { transform, handleMouseMove, handleMouseLeave } = useHoverTranslate(5);
 
   return (
-    <div className='welcomeSection' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-      <div className="greet" id='grt' style={{ transform }}>namaskar, i am avinash</div>
+    <section
+      className="welcomeSection"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="greet" id="grt" style={{ transform }}>
+        {welcomeContent.greeting}
+      </div>
       <div className="basedIn">
         <img src={locat} alt="Location icon" />
-        <div className="place">greater noida, up</div>
+        <div className="place">{welcomeContent.location}</div>
       </div>
       <div className="intro">
-        <p>currently, learning python and exploring the world of data science and machine learning.</p>
+        <p>{welcomeContent.intro}</p>
       </div>
-    </div>
+      <div className="welcomeStats">
+        {welcomeContent.highlightStats.map((stat) => (
+          <div className="statChip" key={stat.id}>
+            <span>{stat.value}</span>
+            <p>{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
-}
+};
 
 export default WelcomeSection;

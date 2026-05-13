@@ -9,6 +9,11 @@
   top: 0;
   z-index: 10;
   background-color: transparent;
+  transition: background-color 0.3s ease;
+
+  &.scrolled {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0));
+  }
 
   .navbarContainer {
     width: 70%;
@@ -22,47 +27,158 @@
       gap: 10px;
       background-color: rgba(255, 255, 255);
       background: linear-gradient(to right, rgba(252, 252, 252, 0.8), rgba(245, 245, 245, 0.8));
+      -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(230, 230, 230, 0.9);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       padding: 0.3rem;
       border-radius: 50px;
       transition: transform 0.4s ease;
 
       .option {
+        text-decoration: none;
         border-radius: 50px;
         padding: 0.6rem;
-        transition: transform 0.8s ease;
+        transition: transform 0.4s ease, background-color 0.3s ease;
+
+        &:hover {
+          transform: translateY(-1px);
+        }
+
+        &:focus-visible {
+          outline: 2px solid #ff7f11;
+          outline-offset: 2px;
+        }
 
         .link {
           text-decoration: none;
           color: black;
           font-size: 1.2rem;
-          font-weight: light;
+          font-weight: 300;
           background: linear-gradient(to left, #000000, #808080);
-          background-clip: text;
           -webkit-background-clip: text;
+          background-clip: text;
           -webkit-text-fill-color: transparent;
         }
       }
 
+      .decorToggle {
+        width: 44px;
+        height: 28px;
+        border-radius: 24px;
+        background: linear-gradient(90deg, #f2f2f2, #ffffff);
+        border: 1px solid rgba(220,220,220,0.9);
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 4px;
+        margin-left: 8px;
+        cursor: pointer;
+        transition: background 0.25s ease, justify-content 0.25s ease;
+
+        .dot {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #999;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+          transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        &.on {
+          justify-content: flex-end;
+
+          .dot {
+            background: #ff7f11;
+            transform: translateX(0);
+          }
+        }
+
+        &.off {
+          justify-content: flex-start;
+
+          .dot {
+            background: #9e9e9e;
+            transform: translateX(0);
+          }
+        }
+      }
+
       .active {
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.95);
         border-radius: 50px;
         font-weight: bold;
+
+        .link {
+          font-weight: 600;
+        }
       }
     }
   }
 }
 
-/* Media Queries */
+/* Dark mode styles */
+body.dark .navigation {
+  &.scrolled {
+    background: linear-gradient(to bottom, rgba(11, 15, 21, 0.95), rgba(11, 15, 21, 0));
+  }
+}
 
+body.dark .navigation .navMid {
+  background: linear-gradient(90deg, rgba(20, 22, 26, 0.9), rgba(16, 18, 22, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+body.dark .navigation .navMid .option .link {
+  background: linear-gradient(90deg, #f5f7fb, #cfdff0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.dark .navigation .navMid .active {
+  background-color: rgba(255, 127, 17, 0.1);
+  border: 1px solid rgba(255, 127, 17, 0.2);
+}
+
+body.dark .navigation .navMid .decorToggle {
+  background: linear-gradient(90deg, rgba(40, 44, 52, 0.9), rgba(36, 40, 48, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .navigation .navMid .decorToggle .dot {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Media Queries */
 @media only screen and (max-width: 768px) {
-  .navbarContainer {
-    width: 80%;
+  .navigation {
+    .navbarContainer {
+      width: 80%;
+    }
+
+    .navMid {
+      .option {
+        padding: 0.52rem 0.66rem;
+
+        .link {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }
 
 @media screen and (max-width: 480px) {
-  .navigation{
+  .navigation {
+    height: 88px;
+
+    .navbarContainer {
+      width: 90%;
+    }
   }
-  
 }

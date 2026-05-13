@@ -1,57 +1,91 @@
-import React, { useState } from 'react';
-import './NavigationSection.scss';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import useHoverTranslate from "../../hooks/useHoverTranslate";
+import "./NavigationSection.scss";
 
 const NavigationSection = () => {
-  const [transform, setTransform] = useState('translate(0px, 0px)');
-  const location = useLocation();
-  const [activeLink, setActiveLink] = useState(location.pathname);
+  const { transform, handleMouseMove, handleMouseLeave } = useHoverTranslate(3);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
-  const handleMouseMove = (event) => {
-    const element = event.currentTarget;
-    const rect = element.getBoundingClientRect();
-    const mouseX = event.clientX - rect.left; // Mouse X position relative to the element
-    const mouseY = event.clientY - rect.top; // Mouse Y position relative to the element
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 16);
+    };
 
-    let moveX = 0;
-    let moveY = 0;
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-    if (mouseX > rect.width / 2) {
-      moveX = 3; // Move right
-    } else {
-      moveX = -3; // Move left
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // initialize dark-mode setting (respect prefers-color-scheme)
+  useEffect(() => {
+    try {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      const stored = localStorage.getItem("dark-mode-enabled");
+      if (stored !== null) {
+        setDarkMode(stored === "true");
+        document.body.classList.toggle("dark", stored === "true");
+      } else {
+        setDarkMode(prefersDark);
+        document.body.classList.toggle("dark", prefersDark);
+      }
+    } catch (e) {
+      // ignore
     }
+  }, []);
 
-    if (mouseY > rect.height / 2) {
-      moveY = 3; // Move down
-    } else {
-      moveY = -3; // Move up
-    }
-
-    setTransform(`translate(${moveX}px, ${moveY}px)`);
-  };
-
-  const handleMouseLeave = () => {
-    setTransform('translate(0px, 0px)');
-  };
-
-  const handleLinkClick = (path) => {
-    setActiveLink(path);
+  const toggleDecor = () => {
+    const next = !darkMode;
+    setDarkMode(next);
+    try {
+      localStorage.setItem("dark-mode-enabled", next ? "true" : "false");
+    } catch (e) {}
+    document.body.classList.toggle("dark", next);
   };
 
   return (
-    <div className="navigation" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <nav
+      className={`navigation ${isScrolled ? "scrolled" : ""}`}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      aria-label="primary navigation"
+    >
       <div className="navbarContainer">
         <div className="navMid" style={{ transform }}>
-          <div className={`option ${activeLink === '/' ? 'active' : ''}`}>
-            <Link className='link' to={'/'} onClick={() => handleLinkClick('/')}>projects</Link>
-          </div>
-          <div className={`option ${activeLink === '/about' ? 'active' : ''}`}>
-            <Link className='link' to={'/about'} onClick={() => handleLinkClick('/about')}>about</Link>
-          </div>
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) => `option ${isActive ? "active" : ""}`}
+            aria-label="go to work section"
+          >
+            <span className="link">work</span>
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => `option ${isActive ? "active" : ""}`}
+            aria-label="go to about me section"
+          >
+            <span className="link">about me</span>
+          </NavLink>
+          {/* Dark mode toggle */}
+          <button
+            className={`decorToggle ${darkMode ? "on" : "off"}`}
+            onClick={toggleDecor}
+            aria-pressed={darkMode ? "true" : "false"}
+            aria-label={darkMode ? "Disable dark mode" : "Enable dark mode"}
+            title={darkMode ? "Disable dark mode" : "Enable dark mode"}
+          >
+            <span className="dot" />
+          </button>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5a6318f9.css",
+    "main.js": "/static/js/main.5ca113f4.js",
+    "static/media/indiagate.JPG": "/static/media/indiagate.cfb3011ec6b0fce66bf3.JPG",
+    "static/media/avinash.png": "/static/media/avinash.c82df41c98de2f377d51.png",
+    "static/media/menhew.jpg": "/static/media/menhew.cce6d0a053105f2047eb.jpg",
+    "static/media/weatherin.jpg": "/static/media/weatherin.399ac5c0cdd4d5262ace.jpg",
+    "static/media/listdown.jpg": "/static/media/listdown.1628f29e99f801f8bf2b.jpg",
+    "index.html": "/index.html",
+    "main.5a6318f9.css.map": "/static/css/main.5a6318f9.css.map",
+    "main.5ca113f4.js.map": "/static/js/main.5ca113f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a6318f9.css",
+    "static/js/main.5ca113f4.js"
+  ]
+}

@@ -1,29 +1,9 @@
-import { useEffect } from "react";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 const ScrollAnimation = () => {
-    useEffect(() => {
-        const cards = document.querySelectorAll(".projectCard");
+  useScrollReveal(".projectCard", 0.4);
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    } else {
-                        // Remove class when out of view to allow re-animation
-                        entry.target.classList.remove("visible");
-                    }
-                });
-            },
-            { threshold: 0.4 } // Adjust threshold as needed
-        );
-
-        cards.forEach((card) => observer.observe(card));
-
-        return () => {
-            cards.forEach((card) => observer.unobserve(card));
-        };
-    }, []);
+  return null;
 };
 
 export default ScrollAnimation;

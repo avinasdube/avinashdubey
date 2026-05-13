@@ -1,76 +1,61 @@
-import React from 'react';
-import './ProjectsSection.scss';
-
-import listdown from '../../assets/images/listdown.jpg';
-import calculator from '../../assets/images/calculator.jpg';
-import weatherin from '../../assets/images/weatherin.jpg';
-import menhew from '../../assets/images/menhew.jpg';
-import ScrollAnimation from '../ScrollAnimation/ScrollAnimation.jsx';
+import { projects } from "../../data/portfolioData";
+import useScrollReveal from "../../hooks/useScrollReveal";
+import "./ProjectsSection.scss";
 
 const ProjectsSection = () => {
-  const projects = [
-    {
-      id: 1,
-      type: 'web application',
-      pImage: menhew,
-      pName: 'menhew',
-      pDescrip: 'an e-commerce application for men clothing built using mern stack with stripe integration.',
-      pViewLink: 'https://menhew.onrender.com',
-      codeViewLink: 'https://github.com/avinasdube/menhew',
-    },
-    {
-      id: 2,
-      type: 'web application',
-      pImage: listdown,
-      pName: 'listdown',
-      pDescrip: 'a beautiful and fully responsive to-do app built using nodejs and reactjs with redux implementation to facilitate efficient and reliable task management features.',
-      pViewLink: 'https://listdown.vercel.app/',
-      codeViewLink: 'https://github.com/avinasdube/listdown'
-    },
-    {
-      id: 3,
-      type: 'web application',
-      pImage: weatherin,
-      pName: 'weather.in',
-      pDescrip: 'a live weather application built in react and nodejs which uses openweatherapp.org api to fetch live weather data. it also features light/dark mode button for better viewing experience.',
-      pViewLink: 'https://avinasdube.github.io/weather.in/',
-      codeViewLink: 'https://github.com/avinasdube/weather.in'
-    },
-    {
-      id: 4,
-      type: 'web application',
-      pImage: calculator,
-      pName: 'simple calculator app',
-      pDescrip: 'a responsive calculator app with all basic functionalities',
-      pViewLink: 'https://avinasdube.github.io/modern-calculator/',
-      codeViewLink: 'https://github.com/avinasdube/modern-calculator'
-    }
-  ];
+  useScrollReveal(".projectCard", 0.35);
 
-  ScrollAnimation();
+  // Generate card color based on project index (cycles through 4 colors)
+  const getCardColor = (index) => `card-${(index % 4) + 1}`;
+
+  // Format project index with padding (01, 02, 03, etc.)
+  const formatProjectIndex = (index) => String(index + 1).padStart(2, "0");
 
   return (
-    <div className='projectsSection'>
+    <section className="projectsSection">
+      <div className="projectsHeading">
+        <h2>selected projects</h2>
+        <p>products i designed and built with practical engineering focus.</p>
+      </div>
       <div className="projectsGrid">
-        {projects.map(project => (
-          <div className="projectCard"  key={project.id}>
+        {projects.map((project, index) => (
+          <article
+            className={`projectCard ${getCardColor(index)}`}
+            key={project.id}
+            data-project-index={index + 1}
+          >
             <div className="projectAbout">
-              <div className="projectType">{project.type}</div>
-              <div className="projectName">{project.pName}</div>
-              <div className="projectDescrip">{project.pDescrip}</div>
+              <div className="projectMeta">
+                <div className="projectIndex">{formatProjectIndex(index)}</div>
+              </div>
+              <div className="projectName">{project.name}</div>
+              <div className="projectDescrip">{project.description}</div>
+              <div className="projectStack">
+                {project.stack.map((tech) => (
+                  <span key={`${project.id}-${tech}`}>{tech}</span>
+                ))}
+              </div>
               <div className="projectActions">
-                <a href={project.pViewLink}>View Live Project</a>
-                <a href={project.codeViewLink}>View Code</a>
+                <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                  view live
+                </a>
+                <a href={project.codeUrl} target="_blank" rel="noreferrer">
+                  view code
+                </a>
               </div>
             </div>
             <div className="projectImage">
-              <img src={project.pImage} alt='' />
+              <img
+                src={project.image}
+                alt={`${project.name} project preview`}
+                loading="lazy"
+              />
             </div>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
 export default ProjectsSection;

@@ -8,10 +8,577 @@ body {
     scroll-behavior: smooth;
     transition: transform 0.4s ease;
 
+    /* overlay removed per user request */
+
     .app {
         width: 100%;
         scroll-behavior: smooth;
         font-family: $primaryfont;
         position: relative;
     }
+}
+
+.projectsSection,
+.highlightsSection,
+.designQuote,
+.aboutMeContainer,
+footer {
+    position: relative;
+}
+
+.projectsSection::before,
+.highlightsSection::before,
+.designQuote::before,
+.aboutMeContainer::before,
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(52%, 720px);
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(225, 225, 225, 0.9), rgba(255, 255, 255, 0));
+}
+
+/* Premium Dark Mode */
+body.dark {
+    background: #0b0f15;
+    color: #e6eef8;
+}
+
+body.dark .navigation .navMid {
+    background: linear-gradient(90deg, rgba(20, 22, 26, 0.7), rgba(16, 18, 22, 0.7));
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+body.dark .welcomeSection .greet {
+    background: linear-gradient(90deg, #f5f7fb, #cfdff0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark .welcomeSection .place {
+    background: linear-gradient(90deg, #dfeaf8, #bcd4f0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark .welcomeSection .intro {
+    color: #c6d5e6;
+}
+
+body.dark .welcomeSection .basedIn img {
+    filter: brightness(1.3) invert(0.85);
+}
+
+body.dark .welcomeSection .statChip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: #dceafc;
+}
+
+body.dark .projectsSection {
+    background-color: transparent;
+}
+
+body.dark .projectsHeading h2 {
+    background: linear-gradient(to left, #f12711, #f5af19);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark .skillsSection {
+    background: transparent;
+}
+
+body.dark .skillsSection h1 {
+    background: linear-gradient(90deg, #ffd89b, #ff8a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark .skillChip {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #d0e1fb;
+}
+
+body.dark .aboutMeContainer {
+    background: transparent;
+}
+
+body.dark .aboutMeContainer h1 {
+    background: linear-gradient(90deg, #ffd89b, #ff8a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.dark .aboutMeContainer h2 {
+    color: #dfe9f6;
+}
+
+body.dark .aboutMeContainer p {
+    color: #b5c4d8;
+}
+
+body.dark .aboutMeContainer .focusCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #c6d5e6;
+}
+
+body.dark .highlightsSection {
+    background: transparent;
+}
+
+body.dark .quoteText {
+    color: #dfe9f6;
+}
+
+body.dark .designQuote {
+    background: transparent;
+}
+
+body.dark .designQuote h2 {
+    color: #dfe9f6;
+}
+
+body.dark .designQuote p {
+    color: #b5c4d8;
+}
+
+/* Separator lines dark mode */
+body.dark .projectsSection::before,
+body.dark .highlightsSection::before,
+body.dark .designQuote::before,
+body.dark .aboutMeContainer::before,
+body.dark footer::before {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+}
+
+/* Highlights section dark */
+body.dark .highlightCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #c6d5e6;
+}
+
+/* LoadingScreen dark */
+body.dark .loadingScreen {
+    background: #0b0f15;
+}
+
+body.dark .loadingScreen .spinner {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-top-color: rgb(255, 130, 20);
+}
+
+/* Focus states dark mode */
+body.dark input:focus,
+body.dark textarea:focus {
+    border-color: rgb(255, 130, 20);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 130, 20, 0.1);
+}
+
+/* Links dark mode */
+body.dark a {
+    transition: color 0.3s ease;
+}
+
+body.dark a:hover {
+    color: rgb(255, 130, 20);
+}
+
+/* About component dark mode */
+body.dark .aboutMeContainer .focusCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    color: #c6d5e6;
+}
+
+body.dark .aboutMeContainer .focusCard:hover {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 22px rgba(255, 130, 20, 0.2);
+}
+
+body.dark .aboutMeContainer .aboutStats .aboutStatCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark .aboutMeContainer .aboutStats .aboutStatCard span {
+    color: #f0f0f0;
+}
+
+body.dark .aboutMeContainer .aboutStats .aboutStatCard p {
+    color: #9eb3c8;
+}
+
+body.dark .aboutMeContainer .achievementCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+body.dark .aboutMeContainer .achievementCard:hover {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(255, 130, 20, 0.15);
+}
+
+body.dark .aboutMeContainer .achievementCard .metric {
+    background: rgba(255, 255, 255, 0.08);
+    color: #d0e1fb;
+}
+
+body.dark .aboutMeContainer .achievementCard h3 {
+    color: #dfe9f6;
+}
+
+body.dark .aboutMeContainer .achievementCard p {
+    color: #9eb3c8;
+}
+
+body.dark .aboutMeContainer .aboutCta {
+    background: linear-gradient(to right, rgba(20, 24, 32, 0.6), rgba(16, 20, 28, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+body.dark .aboutMeContainer .availabilityBadge {
+    background: rgba(255, 130, 20, 0.1);
+    color: #ffd89b;
+    border: 1px solid rgba(255, 130, 20, 0.2);
+}
+
+body.dark .aboutMeContainer .ctaBtn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6eef8;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark .aboutMeContainer .ctaBtn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+body.dark .aboutMeContainer .ctaBtn.primary {
+    background: rgb(255, 130, 20);
+    color: #0b0f15;
+}
+
+body.dark .aboutMeContainer .ctaBtn.primary:hover {
+    background: rgb(255, 150, 50);
+}
+
+body.dark .aboutMeContainer .profileSection .midImg:hover,
+body.dark .aboutMeContainer .profileSection .rightImg:hover {
+    box-shadow: 0 0 24px rgba(255, 130, 20, 0.3);
+}
+
+/* Dark mode: Global text color overrides */
+body.dark p {
+    color: #c6d5e6 !important;
+}
+
+body.dark .projectsHeading p {
+    color: #b5c4d8 !important;
+}
+
+/* Dark mode: Quote section */
+body.dark .designQuote {
+    background-color: transparent !important;
+}
+
+body.dark .designQuote h2,
+body.dark .quoteText {
+    color: #dfe9f6 !important;
+}
+
+/* Dark mode: Highlights section */
+body.dark .highlightsSection {
+    background-color: transparent !important;
+}
+
+body.dark .highlightCard {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+body.dark .highlightCard p {
+    color: #c6d5e6 !important;
+}
+
+/* Dark mode: Projects background */
+body.dark .projectsSection {
+    background-color: transparent !important;
+}
+
+/* Dark mode: Loading screen */
+body.dark .loadingScreen {
+    background-color: #0b0f15 !important;
+}
+
+/* Dark mode: Skills cards */
+body.dark .skillCard p {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #d0e1fb !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.dark .skillCard p:hover {
+    background: rgb(255, 130, 20) !important;
+    color: #0b0f15 !important;
+}
+
+/* Dark mode: Welcome stat chips */
+body.dark .welcomeSection .statChip {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+body.dark .welcomeSection .statChip span {
+    color: #f0f0f0 !important;
+}
+
+body.dark .welcomeSection .statChip p {
+    color: #9eb3c8 !important;
+}
+
+/* Dark mode: Headers */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4 {
+    color: #dfe9f6 !important;
+}
+
+/* Dark mode: Form inputs */
+body.dark input,
+body.dark textarea,
+body.dark select {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #dfe9f6 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Dark mode: Project Cards */
+body.dark .projectCard {
+    border: none;
+}
+
+body.dark .projectCard.card-1 {
+    background: linear-gradient(135deg, #6b4fb0, #5140a0);
+}
+
+body.dark .projectCard.card-2 {
+    background: linear-gradient(135deg, #b04570, #a03560);
+}
+
+body.dark .projectCard.card-3 {
+    background: linear-gradient(135deg, #b0a040, #a09030);
+}
+
+body.dark .projectCard.card-4 {
+    background: linear-gradient(135deg, #40b040, #309030);
+}
+
+body.dark .projectCard .projectMeta .projectIndex {
+    background: rgba(0, 0, 0, 0.3);
+    color: #f5f5f5;
+    font-weight: 800;
+}
+
+body.dark .projectCard .projectMeta .projectType {
+    display: none;
+}
+
+body.dark .projectCard .projectName {
+    color: #1a1a1a !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    font-weight: 800;
+}
+
+body.dark .projectCard .projectDescrip {
+    color: #e8e8e8;
+}
+
+body.dark .projectCard .projectStack span {
+    background: rgba(0, 0, 0, 0.25);
+    color: #f0f0f0;
+}
+
+body.dark .projectCard .projectActions a {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark .projectCard .projectActions a:hover {
+    background-color: rgb(255, 130, 20);
+    color: white;
+    border: 1px solid rgb(255, 130, 20);
+}
+
+body.dark .projectCard.visible:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .projectCard .projectImage img {
+    opacity: 0.9;
+}
+
+body.dark .projectsSection {
+    background-color: transparent;
+}
+
+/* Dark mode: Focus Cards (About section) */
+body.dark .focusCard {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    color: #c6d5e6 !important;
+}
+
+body.dark .focusCard p {
+    color: #b5c4d8 !important;
+}
+
+body.dark .focusCard:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 22px rgba(255, 130, 20, 0.2) !important;
+}
+
+/* Dark mode: Achievement/Wins Cards (About section) */
+body.dark .achievementCard {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+body.dark .achievementCard h3 {
+    color: #dfe9f6 !important;
+}
+
+body.dark .achievementCard p {
+    color: #9eb3c8 !important;
+}
+
+body.dark .achievementCard .metric {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #d0e1fb !important;
+}
+
+body.dark .achievementCard:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 20px rgba(255, 130, 20, 0.15) !important;
+}
+
+/* Dark mode: About stat cards - white background override */
+body.dark .aboutStats .aboutStatCard {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.dark .aboutStats .aboutStatCard span {
+    color: #dfe9f6 !important;
+}
+
+body.dark .aboutStats .aboutStatCard p {
+    color: #9eb3c8 !important;
+}
+
+/* Dark mode: Focus cards - white background override */
+body.dark .focusCards .focusCard {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+body.dark .focusCards .focusCard p {
+    color: #b5c4d8 !important;
+}
+
+body.dark .focusCards .focusCard:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 0 22px rgba(255, 130, 20, 0.2) !important;
+}
+
+/* Dark mode: Achievement/Wins cards - white background override */
+body.dark .achievementGrid .achievementCard {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+body.dark .achievementGrid .achievementCard h3 {
+    color: #dfe9f6 !important;
+}
+
+body.dark .achievementGrid .achievementCard p {
+    color: #b5c4d8 !important;
+}
+
+body.dark .achievementGrid .achievementCard:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 0 20px rgba(255, 130, 20, 0.15) !important;
+}
+
+/* Dark mode: Footer Card/Section */
+body.dark footer {
+    background: transparent !important;
+    color: #bcd3ea !important;
+    border-top: none !important;
+}
+
+body.dark footer h3 {
+    color: #dfe9f6 !important;
+}
+
+body.dark footer p {
+    color: #9eb3c8 !important;
+}
+
+body.dark footer a {
+    color: #cfdff0 !important;
+}
+
+body.dark footer a:hover {
+    color: #ffd89b !important;
+}
+
+body.dark .footerCta {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+body.dark .footerCta p {
+    color: #b5c4d8 !important;
+}
+
+body.dark .footerCta a {
+    background: rgb(255, 130, 20) !important;
+    color: #0b0f15 !important;
+}
+
+body.dark .footerCta a:hover {
+    background: rgb(255, 150, 50) !important;
+}
+
+body.dark .copyright {
+    background: transparent !important;
+    border-top: none !important;
+    color: #7a8fa0 !important;
+}
+
+body.dark .copyright .connectLogo img {
+    filter: brightness(1.3) invert(0.85);
 }

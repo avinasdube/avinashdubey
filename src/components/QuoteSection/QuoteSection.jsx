@@ -1,12 +1,14 @@
-import React from 'react';
-import './QuoteSection.scss';
+import { quote } from "../../data/portfolioData";
+import "./QuoteSection.scss";
 
 const QuoteSection = () => {
-    return (
-        <div className='designQuote'>
-            <div className='qt' id='qyt'>"design is the art of creating visual poetry. let me do some for you !"</div>
-        </div>
-    )
-}
+  return (
+    <div className="designQuote">
+      <div className="qt" id="qyt">
+        "{quote}"
+      </div>
+    </div>
+  );
+};
 
 export default QuoteSection;
