@@ -3,7 +3,6 @@
 body {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
     background: #ffffff;
     scroll-behavior: smooth;
     transition: transform 0.4s ease;
@@ -15,6 +14,18 @@ body {
         scroll-behavior: smooth;
         font-family: $primaryfont;
         position: relative;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        padding-top: 132px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        padding-top: 100px;
     }
 }
 
